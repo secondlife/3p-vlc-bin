@@ -1,0 +1,9 @@
+# BuildParams
+#
+# Please refer to:
+#  https://wiki.secondlife.com/wiki/Automated_Build_System
+
+public_build = true
+
+build_Linux = false
+build_Darwin = false
