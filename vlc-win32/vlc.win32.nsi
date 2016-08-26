@@ -6,8 +6,8 @@
 !include "languages\declaration.nsh"
 
 !define PRODUCT_NAME "VLC media player"
-!define VERSION 2.2.3
-!define PRODUCT_VERSION 2.2.3
+!define VERSION 2.2.4
+!define PRODUCT_VERSION 2.2.4
 !define PRODUCT_GROUP "VideoLAN"
 !define PRODUCT_PUBLISHER "VideoLAN"
 !define PRODUCT_WEB_SITE "http://www.videolan.org/"
