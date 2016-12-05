@@ -1,28 +1,30 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cd "$(dirname "$0")" 
 
 # turn on verbose debugging output for parabuild logs.
-set -x
+exec 4>&1; export BASH_XTRACEFD=4; set -x
 
 # make errors fatal
 set -e
+# bleat on references to undefined shell variables
+set -u
 
 if [ -z "$AUTOBUILD" ] ; then 
-    fail
+    exit 1
 fi
 
 if [ "$OSTYPE" = "cygwin" ] ; then
     export AUTOBUILD="$(cygpath -u $AUTOBUILD)"
 fi
 
-# load autobuild provided shell functions and variables
-set +x
-eval "$("$AUTOBUILD" source_environment)"
-set -x
-
 top="$(pwd)"
 stage="$(pwd)/stage"
+
+# load autobuild provided shell functions and variables
+source_environment_tempfile="$stage/source_environment.sh"
+"$AUTOBUILD" source_environment > "$source_environment_tempfile"
+. "$source_environment_tempfile"
 
 # source directories for various platfor/bit-widths
 # replace contents of these folders in the VENDOR branch entirely
@@ -93,4 +95,3 @@ case "$AUTOBUILD_PLATFORM" in
     "linux64")
     ;;
 esac
-pass
