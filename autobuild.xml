@@ -62,6 +62,31 @@
           <key>name</key>
           <string>windows</string>
         </map>
+
+        <key>darwin64</key>
+        <map>
+          <key>build_directory</key>
+          <string>stage</string>
+          <key>configurations</key>
+          <map>
+            <key>default</key>
+            <map>
+              <key>default</key>
+              <boolean>true</boolean>
+              <key>name</key>
+              <string>default</string>
+            </map>
+          </map>
+          <key>manifest</key>
+          <array>
+            <string>include/*</string>
+            <string>lib/*</string>
+          </array>
+          <key>name</key>
+          <string>windows</string>
+        </map>
+
+
       </map>
       <key>version_file</key>
       <string>VERSION.txt</string>
