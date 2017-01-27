@@ -33,7 +33,7 @@ source_environment_tempfile="$stage/source_environment.sh"
 # https://wiki.lindenlab.com/wiki/Mercurial_Vendor_Branches
 VLC_SOURCE_DIR_WIN32="vlc-win32"
 VLC_SOURCE_DIR_WIN64="vlc-win64"
-VLC_SOURCE_DIR_OSX64="vlc-osx64"
+VLC_SOURCE_DIR_DARWIN64="vlc-darwin64"
 
 # used in VERSION.txt but common to all bit-widths and platforms
 build=${AUTOBUILD_BUILD_ID:=0}
@@ -86,7 +86,39 @@ case "$AUTOBUILD_PLATFORM" in
         cp "${VLC_SOURCE_DIR}/COPYING.txt" "$stage/LICENSES/vlc.txt"
     ;;
 
-    "darwin")
+    darwin64)
+        # populate version_file
+        VERSION_HEADER_FILE="${VLC_SOURCE_DIR_DARWIN64}/include/vlc/libvlc_version.h"
+        cc -DVERSION_HEADER_FILE="\"$VERSION_HEADER_FILE\"" \
+           -DVERSION_MAJOR_MACRO="LIBVLC_VERSION_MAJOR" \
+           -DVERSION_MINOR_MACRO="LIBVLC_VERSION_MINOR" \
+           -DVERSION_REVISION_MACRO="LIBVLC_VERSION_REVISION" \
+           -DVERSION_BUILD_MACRO="\"${build}\"" \
+           -o "$stage/version" "$top/version.c"
+        "$stage/version" > "$stage/version.txt"
+        rm "$stage/version"
+
+        # create folders
+        mkdir -p "$stage/include/vlc"
+        mkdir -p "$stage/lib/release"
+        mkdir -p "$stage/lib/release/plugins"
+        mkdir -p "$stage/LICENSES"
+
+        # include files
+        cp -r "${VLC_SOURCE_DIR_DARWIN64}/include/vlc/" "$stage/include/"
+
+        # library files
+        cp "${VLC_SOURCE_DIR_DARWIN64}/lib/libvlc.5.dylib" "$stage/lib/release/"
+        cp "${VLC_SOURCE_DIR_DARWIN64}/lib/libvlc.dylib" "$stage/lib/release/"
+        cp "${VLC_SOURCE_DIR_DARWIN64}/lib/libvlccore.8.dylib" "$stage/lib/release/"
+        cp "${VLC_SOURCE_DIR_DARWIN64}/lib/libvlccore.dylib" "$stage/lib/release/"
+
+        # plugins
+        cp "${VLC_SOURCE_DIR_DARWIN64}/lib/lib*_plugin.dylib" "$stage/lib/release/plugins/"
+
+
+
+
     ;;
 
     "linux")
