@@ -6,8 +6,8 @@
 !include "languages\declaration.nsh"
 
 !define PRODUCT_NAME "VLC media player"
-!define VERSION 2.2.4
-!define PRODUCT_VERSION 2.2.4
+!define VERSION 2.2.6
+!define PRODUCT_VERSION 2.2.6
 !define PRODUCT_GROUP "VideoLAN"
 !define PRODUCT_PUBLISHER "VideoLAN"
 !define PRODUCT_WEB_SITE "http://www.videolan.org/"
@@ -195,7 +195,6 @@ ${MementoSection} $Name_Section01 SEC01
 
   ; VLC.exe, libvlc.dll
   !insertmacro InstallFile vlc.exe
-  !insertmacro InstallFile vlc.exe.manifest
   !insertmacro InstallFile vlc-cache-gen.exe
 
   ; All dlls
@@ -280,7 +279,6 @@ ${MementoSection} $Name_Section03 SEC03
   SetOutPath "$INSTDIR"
   !insertmacro OpenUninstallLog
   !insertmacro InstallFile npvlc.dll
-  !insertmacro InstallFile npvlc.dll.manifest
   !insertmacro CloseUninstallLog
 
   !define Moz "SOFTWARE\MozillaPlugins\@videolan.org/vlc,version=${VERSION}"
@@ -299,7 +297,6 @@ ${MementoSection} $Name_Section04 SEC04
   SetOutPath "$INSTDIR"
   !insertmacro OpenUninstallLog
   !insertmacro InstallFile axvlc.dll
-  !insertmacro InstallFile axvlc.dll.manifest
   !insertmacro CloseUninstallLog
  RegDLL "$INSTDIR\axvlc.dll"
 #  ExecWait 'regsvr32.exe /s "$INSTDIR\axvlc.dll"'
@@ -822,7 +819,7 @@ Function RunUninstaller
   HideWindow
   ClearErrors
 
-  ExecWait '$R1 _?=$INSTDIR'
+  ExecWait '"$R1" _?=$INSTDIR'
 
   IfErrors no_remove_uninstaller
 
@@ -921,7 +918,6 @@ Section "un.$Name_Section91" SEC91
  UnRegDLL "$INSTDIR\axvlc.dll"
 #  ExecWait 'regsvr32.exe /s /u "$INSTDIR\axvlc.dll"'
   Delete /REBOOTOK "$INSTDIR\axvlc.dll"
-  Delete /REBOOTOK "$INSTDIR\axvlc.dll.manifest"
 
   ;remove mozilla plugin
   Push $R0
@@ -949,7 +945,6 @@ Section "un.$Name_Section91" SEC91
   "${Index}-End:"
   !undef Index
   Delete /REBOOTOK "$INSTDIR\npvlc.dll"
-  Delete /REBOOTOK "$INSTDIR\npvlc.dll.manifest"
 
   RMDir "$SMPROGRAMS\VideoLAN"
   RMDir /r $SMPROGRAMS\VideoLAN
