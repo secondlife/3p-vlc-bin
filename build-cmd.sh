@@ -69,7 +69,6 @@ case "$AUTOBUILD_PLATFORM" in
 
         # binary files
         cp "${VLC_SOURCE_DIR}/libvlc.dll" "$stage/bin/release/"
-        cp "${VLC_SOURCE_DIR}/libvlc.dll.manifest" "$stage/bin/release/"
         cp "${VLC_SOURCE_DIR}/libvlccore.dll" "$stage/bin/release/"
 
         # binary files
