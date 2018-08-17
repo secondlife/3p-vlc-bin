@@ -3,14 +3,16 @@
 <map>
     <key>package_description</key>
     <map>
+      <key>canonical_repo</key>
+      <string>https://bitbucket.org/lindenlab/3p-vlc-bin</string>
+      <key>copyright</key>
+      <string>Copyright (C) 1998-2016 VLC authors and VideoLAN</string>
       <key>license</key>
       <string>GPL2</string>
       <key>license_file</key>
       <string>LICENSES/vlc.txt</string>
       <key>name</key>
       <string>vlc-bin</string>
-      <key>copyright</key>
-      <string>Copyright (C) 1998-2016 VLC authors and VideoLAN</string>
       <key>platforms</key>
       <map>
         <key>common</key>
@@ -39,6 +41,28 @@
           <key>name</key>
           <string>common</string>
         </map>
+        <key>darwin64</key>
+        <map>
+          <key>build_directory</key>
+          <string>stage</string>
+          <key>configurations</key>
+          <map>
+            <key>default</key>
+            <map>
+              <key>default</key>
+              <boolean>true</boolean>
+              <key>name</key>
+              <string>default</string>
+            </map>
+          </map>
+          <key>manifest</key>
+          <array>
+            <string>include/*</string>
+            <string>lib/*</string>
+          </array>
+          <key>name</key>
+          <string>windows</string>
+        </map>
         <key>windows</key>
         <map>
           <key>build_directory</key>
@@ -62,31 +86,6 @@
           <key>name</key>
           <string>windows</string>
         </map>
-
-        <key>darwin64</key>
-        <map>
-          <key>build_directory</key>
-          <string>stage</string>
-          <key>configurations</key>
-          <map>
-            <key>default</key>
-            <map>
-              <key>default</key>
-              <boolean>true</boolean>
-              <key>name</key>
-              <string>default</string>
-            </map>
-          </map>
-          <key>manifest</key>
-          <array>
-            <string>include/*</string>
-            <string>lib/*</string>
-          </array>
-          <key>name</key>
-          <string>windows</string>
-        </map>
-
-
       </map>
       <key>version_file</key>
       <string>VERSION.txt</string>
