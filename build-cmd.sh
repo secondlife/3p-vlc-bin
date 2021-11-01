@@ -115,6 +115,16 @@ case "$AUTOBUILD_PLATFORM" in
 
         # license file
         cp "${VLC_SOURCE_DIR_DARWIN64}/COPYING.txt" "$stage/LICENSES/vlc.txt"
+
+        # sign the libs
+        CONFIG_FILE="$build_secrets_checkout/code-signing-osx/config.sh"
+        if [ -f "$CONFIG_FILE" ]; then
+            source $CONFIG_FILE
+            codesign --force --timestamp --sign "$APPLE_SIGNATURE" "$stage/lib/release"/libvlc*.dylib
+            codesign --force --timestamp --sign "$APPLE_SIGNATURE" "$stage/lib/release/plugins"/lib*_plugin.dylib
+        else
+            echo "No config file found; skipping codesign."
+        fi
     ;;
 
     "linux")
