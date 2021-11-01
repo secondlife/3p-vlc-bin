@@ -107,7 +107,7 @@ case "$AUTOBUILD_PLATFORM" in
         cp -r "${VLC_SOURCE_DIR_DARWIN64}/include/vlc/" "$stage/include/vlc"
 
         # library files
-        cp "${VLC_SOURCE_DIR_DARWIN64}/lib/libvlc*.dylib" "$stage/lib/release/"
+        cp "${VLC_SOURCE_DIR_DARWIN64}/lib"/libvlc*.dylib "$stage/lib/release/"
 
         # plugins
         cp "${VLC_SOURCE_DIR_DARWIN64}/plugins/"lib*_plugin".dylib" "$stage/lib/release/plugins/"
