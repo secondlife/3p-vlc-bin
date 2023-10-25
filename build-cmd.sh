@@ -26,6 +26,11 @@ source_environment_tempfile="$stage/source_environment.sh"
 "$AUTOBUILD" source_environment > "$source_environment_tempfile"
 . "$source_environment_tempfile"
 
+# IMPORTANT: (Effectively) removing the code signing step for macOS
+# builds with this declaration during the move to GHA. It will
+# need to be added back in once we have a strategy for doing so.
+build_secrets_checkout=""
+
 # source directories for various platfor/bit-widths
 # replace contents of these folders in the VENDOR branch entirely
 # when updating to a more recent version of VLC as per the 
