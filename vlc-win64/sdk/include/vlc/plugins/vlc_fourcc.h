@@ -2,7 +2,7 @@
  * vlc_fourcc.h: Definition of various FOURCC and helpers
  *****************************************************************************
  * Copyright (C) 2009 Laurent Aimar
- * $Id: 9042a48a9bd206c8fb6228bbb04dbde136c25499 $
+ * $Id$
  *
  * Authors: Laurent Aimar <fenrir _AT_ videolan _DOT_ com>
  *
@@ -346,6 +346,15 @@
 
 /* 8 bits grey */
 #define VLC_CODEC_GREY            VLC_FOURCC('G','R','E','Y')
+/* 10 bits grey */
+#define VLC_CODEC_GREY_10L        VLC_FOURCC('G','0','F','L')
+#define VLC_CODEC_GREY_10B        VLC_FOURCC('G','0','F','B')
+/* 12 bits grey */
+#define VLC_CODEC_GREY_12L        VLC_FOURCC('G','2','F','L')
+#define VLC_CODEC_GREY_12B        VLC_FOURCC('G','2','F','B')
+/* 16 bits grey */
+#define VLC_CODEC_GREY_16L        VLC_FOURCC('G','R','F','L')
+#define VLC_CODEC_GREY_16B        VLC_FOURCC('G','R','F','B')
 
 /* VDPAU video surface YCbCr 4:2:0 */
 #define VLC_CODEC_VDPAU_VIDEO_420 VLC_FOURCC('V','D','V','0')
@@ -400,6 +409,7 @@
 #define VLC_CODEC_PCX             VLC_FOURCC('p','c','x',' ')
 #define VLC_CODEC_XWD             VLC_FOURCC('X','W','D',' ')
 #define VLC_CODEC_TXD             VLC_FOURCC('T','X','D',' ')
+#define VLC_CODEC_WEBP            VLC_FOURCC('W','E','B','P')
 
 
 /* Audio codec */
